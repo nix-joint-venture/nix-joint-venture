@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 let
-  typst = lib.getExe' pkgs.typst "typst";
-  zathura = lib.getExe' pkgs.zathura "zathura";
+  typst = lib.getExe pkgs.typst;
+  zathura = lib.getExe pkgs.zathura;
 in ''
   dir=$(mktemp -d)
   _=$(${typst} watch "$1" "$dir/tmp.pdf" & echo $! > "$dir/pid")&
