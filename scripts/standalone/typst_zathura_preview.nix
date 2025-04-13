@@ -2,7 +2,7 @@
 let
   typst = lib.getExe' pkgs.typst "typst";
   zathura = lib.getExe' pkgs.zathura "zathura";
-in pkgs.writeShellScriptBin "typst-preview.sh" ''
+in ''
   dir=$(mktemp -d)
   _=$(${typst} watch "$1" "$dir/tmp.pdf" & echo $! > "$dir/pid")&
   until [ -f "$dir/tmp.pdf" ]
