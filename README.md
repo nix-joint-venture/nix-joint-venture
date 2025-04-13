@@ -1,3 +1,6 @@
+# FAQ:
+- escaping string interpolation: put '' befor $
+  - example: `''${nointerpolation}`
 # Scripts:
 - always use lib.getExe  or lib.getExe' instead of add /bin/$name
 
