@@ -1,9 +1,9 @@
 {
   pkgs,
-  globals,
   getExe,
   ...
 }:
+{ globals, ... }:
 let
   zathura = getExe pkgs.zathura;
   python3 = getExe pkgs.python3;
