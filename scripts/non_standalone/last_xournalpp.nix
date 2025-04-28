@@ -1,6 +1,16 @@
-{ pkgs, scripts, lib, globals, ... }:
-let xournalpp = lib.getExe pkgs.xournalpp;
-in ''
+{
+  pkgs,
+  lib,
+  ...
+}:
+{
+  globals,
+  ...
+}:
+let
+  xournalpp = lib.getExe pkgs.xournalpp;
+in
+''
   # run above python script
   readarray -t files <<<$(cat $HOME/.config/xournalpp/metadata/*.metadata | grep "\"" | tac | sed -e 's/^.//' -e 's/.$//')
 
@@ -16,7 +26,7 @@ in ''
       fi
   done
 
-  file_i=$(printf "%s\n" "''${print_files[@]}" | rofi -dmenu -format i)
+  file_i=$(printf "%s\n" "''${print_files[@]}" | ${globals.dmenu} -format i)
 
   # open file in xournalpp (if selected)
   if [ "$file_i" = 0 ]; then

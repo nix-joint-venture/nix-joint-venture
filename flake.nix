@@ -46,6 +46,19 @@
                 };
               }
             ); # these are just derivations
+
+            non_standalone =
+              args:
+              lib.mapAttrs (n: v: pkgs.writeShellScript n (v args)) (
+                hlib.load {
+                  src = ./scripts/non_standalone;
+                  loader = hlib.loaders.default;
+                  inputs = {
+                    inherit pkgs lib;
+                    inherit (lib) getExe getExe';
+                  };
+                }
+              ); # derivations which need special inputs
           };
         }
       );
