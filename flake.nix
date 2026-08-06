@@ -36,7 +36,7 @@
         in
         {
           scripts = {
-            standalone = lib.mapAttrs pkgs.writeShellScript (
+            standalone = lib.mapAttrs (n: v: if lib.isString v then pkgs.writeShellScript n v else v) (
               hlib.load {
                 src = ./scripts/standalone;
                 loader = hlib.loaders.default;
